@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="新前缀">
+    <file>res/ba.jpg</file>
+    <file>res/开机.svg</file>
+  </qresource>
+</RCC>
