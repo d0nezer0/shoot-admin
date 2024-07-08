@@ -1,0 +1,23 @@
+注意事项：
+
+安装包：
+pip install markupsafe -i https://pypi.tuna.tsinghua.edu.cn/simple
+包不兼容芯片的话 删掉重新下；
+
+1. 修改以下源码， 不然无法被局域网访问 IP；
+    # /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/pyfladesk/__init__.py
+    class ApplicationThread(QtCore.QThread):
+        def __init__(self, application, port=5000):
+            super(ApplicationThread, self).__init__()
+            self.application = application
+            self.port = port
+
+        def __del__(self):
+            self.wait()
+
+        def run(self):
+            self.application.run(port=self.port, host="0.0.0.0", threaded=True)
+2. 如果数据不一致， 可以删除 db_data 下面的 daba.db 文件；
+3. 打包 TODO；
+4. 设备分配， 不让配置了。 由打包处理；
+5.
