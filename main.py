@@ -53,16 +53,13 @@ class mainpage(QMainWindow, Ui_MainWindow):  # 主页面的类
 
         self.resize_scorll(0, 0)
 
-
     def sign_connect(self):
         self.import_btn.clicked.connect(self.openFileDialog)
-
 
     def updateDateTime(self):
         self.right_shot_manager.refresh_shoots()
         if ts_manager.current_train_record_code and ts_manager.status == UnifiedTrainStatus.Started.value:
             self.update_round_rank(SingleRound.getTrainTop10(ts_manager.current_train_record_code))
-
 
     def ziyou(self):
         if ts_manager.mode == Mode.FreeTraining.value:
@@ -101,7 +98,6 @@ class mainpage(QMainWindow, Ui_MainWindow):  # 主页面的类
             self.pop_msg_box("已经结束训练！")
         elif not ts_manager.current_train_record_code or (ts_manager.current_train_record_code and ts_manager.status == UnifiedTrainStatus.Finished.value):
             self.pop_msg_box("没有统一训练配置！")
-
 
     def openFileDialog(self):
         if ts_manager.mode == Mode.FreeTraining.value:
@@ -145,7 +141,11 @@ class mainpage(QMainWindow, Ui_MainWindow):  # 主页面的类
 
 
 if __name__ == "__main__":
-    import_device_infos(f"{os.getcwd()}/device_info.csv")
+    base_dir = os.path.dirname(sys.executable)
+    import_device_infos(f"{base_dir}/device_info.csv")
+
+    # print(f"-11111-{os.path.dirname(sys.executable)}---22222--{os.path.dirname(sys.argv[0])}---os.getcwd():{os.getcwd()}-----------------")
+
     qt_app = QApplication(sys.argv)
     qt_app.setStyle("fusion")
     qt_app.setAttribute(Qt.AA_EnableHighDpiScaling)

@@ -24,7 +24,7 @@ class SingleRound(Model):
     started = BooleanField(verbose_name="是否启动", default=False)
     created_at = DateTimeField(constraints=[SQL("DEFAULT CURRENT_TIMESTAMP ")])
     updated_date = DateField(index=True, null=True)
-    updated_at = DateTimeField(constraints=[SQL("DEFAULT CURRENT_TIMESTAMP")])
+    # updated_at = DateTimeField(constraints=[SQL("DEFAULT CURRENT_TIMESTAMP")])
     is_deleted = SmallIntegerField(default=0)
 
     class Meta:
